@@ -2,20 +2,42 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerController : MonoBehaviour
 {
+    public ScoreController scoreController;
     public Animator animator;     // Animator class animator is object   (its from Unity)
     private Rigidbody2D rb;       // Rigidbody2D is a class   (its from Unity)
     public float speed;
-    /*private void Awake()
+
+    public void PickUpKey()
     {
-       Debug.Log("Player Controller awake");  
+        Debug.Log("Player picked up the key");
+        scoreController.ScoreUpdate(10);
     }
-       private void OnCollisionEnter2D(Collision2D collision) 
-       {
-         Debug.Log("Collision: " + collision.gameObject.name);
-       }*/
+
+    public void KillPlayer()
+    {
+        Debug.Log("player killed by enemy");
+        Destroy(gameObject);
+        ReloadLevel();
+    }
+
+    private void ReloadLevel()
+    {
+        Debug.Log("Reloaded Scene");
+        SceneManager.LoadScene(0);
+    }
+
+    /*private void Awake()
+{
+  Debug.Log("Player Controller awake");  
+}
+  private void OnCollisionEnter2D(Collision2D collision) 
+  {
+    Debug.Log("Collision: " + collision.gameObject.name);
+  }*/
 
     private void Start()       // its from unity
     {
