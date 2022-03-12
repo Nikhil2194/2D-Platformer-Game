@@ -7,6 +7,8 @@ using UnityEngine.SceneManagement;
 public class PlayerController : MonoBehaviour
 {
     public ScoreController scoreController;
+    public GameOverController gameOverController;
+
     public Animator animator;     // Animator class animator is object   (its from Unity)
     private Rigidbody2D rb;       // Rigidbody2D is a class   (its from Unity)
     public float speed;
@@ -21,13 +23,9 @@ public class PlayerController : MonoBehaviour
     {
         Debug.Log("player killed by enemy");
         Destroy(gameObject);
-        ReloadLevel();
-    }
+        gameOverController.PlayerDied();
+        this.enabled = false;
 
-    private void ReloadLevel()
-    {
-        Debug.Log("Reloaded Scene");
-        SceneManager.LoadScene(0);
     }
 
     /*private void Awake()
