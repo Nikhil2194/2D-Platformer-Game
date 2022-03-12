@@ -21,11 +21,18 @@ public class PlayerController : MonoBehaviour
 
     public void KillPlayer()
     {
-        Debug.Log("player killed by enemy");
-        Destroy(gameObject);
-        gameOverController.PlayerDied();
-        this.enabled = false;
-
+        try
+        {
+            Debug.Log("player killed by enemy");
+            Destroy(gameObject);
+            gameOverController.PlayerDied();
+            this.enabled = false;
+        }
+        catch (Exception ex)
+        {
+            Debug.Log("Error:" + ex.StackTrace);
+            //throw;
+        }
     }
 
     /*private void Awake()
@@ -57,7 +64,7 @@ public class PlayerController : MonoBehaviour
         float horizontal = Input.GetAxisRaw("Horizontal");      //Key A= -1, Key D = 1
 
         //Vector3 obj = new Vector3(horizontal, 0, 0); 
-        transform.position = transform.position + (new Vector3(horizontal, 0, 0) * speed * Time.deltaTime );   // Changing position
+        transform.position = transform.position + (new Vector3(horizontal, 0, 0) * speed * Time.deltaTime);   // Changing position
         animator.SetFloat("Speed", Mathf.Abs(horizontal));
 
         Vector3 scale = transform.localScale;
@@ -98,5 +105,5 @@ public class PlayerController : MonoBehaviour
             animator.SetBool("Jump", false);
         }
     }
-    
+
 }
